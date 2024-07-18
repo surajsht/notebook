@@ -65,6 +65,22 @@
   background-color: rgba(0, 0, 0, 0.5);
 }
 
+.auth-error {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1.4rem;
+  color: #842029;
+  background-color: #f8d7da;
+  padding: 0.8rem 2rem;
+  border-radius: 0.8rem;
+  margin-bottom: 1.2rem;
+}
+
+.auth-error svg {
+  font-size: 2.2rem;
+}
+
 .auth-content-left {
   height: 52rem;
   width: 45%;

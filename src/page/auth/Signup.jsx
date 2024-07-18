@@ -1,8 +1,47 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
+import { IoAlertCircle } from "react-icons/io5";
+import { useState } from "react";
+import { auth } from "../../fireConfig/FireConfig";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import "./auth.css";
 
 const Signup = () => {
+  const [userName, getUserName] = useState("");
+  const [userLastName, getUserLastName] = useState("");
+  const [userEmail, getUserEmail] = useState("");
+  const [userPassword, getUserPassword] = useState("");
+  const [ErrorMsg, setErrorMsg] = useState("");
+
+  const navigate = useNavigate();
+
+  const ErroMessage = (msg) => {
+    setErrorMsg(msg);
+
+    setTimeout(() => {
+      setErrorMsg("");
+    }, 3000);
+  };
+
+  const UserAuthWithEmailAndPassword = async (e) => {
+    e.preventDefault();
+
+    if (userName === "" || userEmail === "" || userPassword === "") {
+      ErroMessage("Please fill all the required fields.");
+      return;
+    }
+
+    try {
+      await createUserWithEmailAndPassword(auth, userEmail, userPassword);
+      await updateProfile(auth.currentUser, {
+        displayName: `${userName} ${userLastName}`.trim(),
+      });
+      navigate("/profile");
+    } catch (e) {
+      ErroMessage(e.message);
+    }
+  };
+
   return (
     <section className="auth-container signup-container">
       <div className="auth-content">
@@ -17,19 +56,38 @@ const Signup = () => {
             <p className="auth-header-desc">Unlock Your World</p>
           </div>
 
-          <form className="auth-form">
+          <form
+            className="auth-form"
+            onSubmit={(e) => UserAuthWithEmailAndPassword(e)}
+          >
+            {ErrorMsg !== "" && (
+              <span className="auth-error">
+                <IoAlertCircle /> {ErrorMsg}
+              </span>
+            )}
+
             <div className="form-item has-sub-item">
               <div className="form-sub-item">
                 <label htmlFor="name">
                   <span>*</span>
                   Name
                 </label>
-                <input type="text" placeholder="Enter Your Name" />
+                <input
+                  type="text"
+                  placeholder="Enter Your Name"
+                  value={userName}
+                  onChange={(e) => getUserName(e.target.value)}
+                />
               </div>
 
               <div className="form-sub-item">
                 <label htmlFor="last-name">Last Name</label>
-                <input type="text" placeholder="Enter Your Last Name" />
+                <input
+                  type="text"
+                  placeholder="Enter Your Last Name"
+                  value={userLastName}
+                  onChange={(e) => getUserLastName(e.target.value)}
+                />
               </div>
             </div>
 
@@ -38,7 +96,12 @@ const Signup = () => {
                 <span>*</span>
                 Email
               </label>
-              <input type="text" placeholder="Enter Your Email" />
+              <input
+                type="text"
+                placeholder="Enter Your Email"
+                value={userEmail}
+                onChange={(e) => getUserEmail(e.target.value)}
+              />
             </div>
 
             <div className="form-item">
@@ -50,6 +113,8 @@ const Signup = () => {
                 type="password"
                 placeholder="Enter Your Password"
                 autoComplete="on"
+                value={userPassword}
+                onChange={(e) => getUserPassword(e.target.value)}
               />
             </div>
 
