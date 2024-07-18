@@ -3,7 +3,12 @@ import { FcGoogle } from "react-icons/fc";
 import { IoAlertCircle } from "react-icons/io5";
 import { useState } from "react";
 import { auth } from "../../fireConfig/FireConfig";
-import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  updateProfile,
+  GoogleAuthProvider,
+  signInWithPopup,
+} from "firebase/auth";
 import "./auth.css";
 
 const Signup = () => {
@@ -14,6 +19,7 @@ const Signup = () => {
   const [ErrorMsg, setErrorMsg] = useState("");
 
   const navigate = useNavigate();
+  const provider = new GoogleAuthProvider();
 
   const ErroMessage = (msg) => {
     setErrorMsg(msg);
@@ -36,6 +42,15 @@ const Signup = () => {
       await updateProfile(auth.currentUser, {
         displayName: `${userName} ${userLastName}`.trim(),
       });
+      navigate("/profile");
+    } catch (e) {
+      ErroMessage(e.message);
+    }
+  };
+
+  const UserAuthWithGoogle = async () => {
+    try {
+      await signInWithPopup(auth, provider);
       navigate("/profile");
     } catch (e) {
       ErroMessage(e.message);
@@ -121,7 +136,10 @@ const Signup = () => {
             <button className="auth-btn auth-btn-primary">Sign Up</button>
           </form>
 
-          <button className="auth-btn auth-btn-secondary">
+          <button
+            className="auth-btn auth-btn-secondary"
+            onClick={() => UserAuthWithGoogle()}
+          >
             <FcGoogle /> Sign Up With Google
           </button>
 
