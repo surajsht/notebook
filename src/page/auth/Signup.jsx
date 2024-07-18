@@ -13,10 +13,10 @@ import { setDoc, doc } from "firebase/firestore";
 import "./auth.css";
 
 const Signup = () => {
-  const [userName, getUserName] = useState("");
-  const [userLastName, getUserLastName] = useState("");
-  const [userEmail, getUserEmail] = useState("");
-  const [userPassword, getUserPassword] = useState("");
+  const [userName, setUserName] = useState("");
+  const [userLastName, setUserLastName] = useState("");
+  const [userEmail, setUserEmail] = useState("");
+  const [userPassword, setUserPassword] = useState("");
   const [ErrorMsg, setErrorMsg] = useState("");
 
   const navigate = useNavigate();
@@ -102,7 +102,7 @@ const Signup = () => {
                   type="text"
                   placeholder="Enter Your Name"
                   value={userName}
-                  onChange={(e) => getUserName(e.target.value)}
+                  onChange={(e) => setUserName(e.target.value)}
                 />
               </div>
 
@@ -112,7 +112,7 @@ const Signup = () => {
                   type="text"
                   placeholder="Enter Your Last Name"
                   value={userLastName}
-                  onChange={(e) => getUserLastName(e.target.value)}
+                  onChange={(e) => setUserLastName(e.target.value)}
                 />
               </div>
             </div>
@@ -126,7 +126,7 @@ const Signup = () => {
                 type="text"
                 placeholder="Enter Your Email"
                 value={userEmail}
-                onChange={(e) => getUserEmail(e.target.value)}
+                onChange={(e) => setUserEmail(e.target.value)}
               />
             </div>
 
@@ -140,7 +140,7 @@ const Signup = () => {
                 placeholder="Enter Your Password"
                 autoComplete="on"
                 value={userPassword}
-                onChange={(e) => getUserPassword(e.target.value)}
+                onChange={(e) => setUserPassword(e.target.value)}
               />
             </div>
 
