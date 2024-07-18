@@ -22,7 +22,7 @@ const Signup = () => {
   const navigate = useNavigate();
   const provider = new GoogleAuthProvider();
 
-  const ErroMessage = (msg) => {
+  const ErrorMessage = (msg) => {
     setErrorMsg(msg);
 
     setTimeout(() => {
@@ -42,7 +42,7 @@ const Signup = () => {
     e.preventDefault();
 
     if (userName === "" || userEmail === "" || userPassword === "") {
-      ErroMessage("Please fill all the required fields.");
+      ErrorMessage("Please fill all the required fields.");
       return;
     }
 
@@ -54,7 +54,7 @@ const Signup = () => {
       await setInitialDoc(userEmail);
       navigate("/profile");
     } catch (e) {
-      ErroMessage(e.message);
+      ErrorMessage(e.message);
     }
   };
 
@@ -64,7 +64,7 @@ const Signup = () => {
       await setInitialDoc(auth.currentUser.email);
       navigate("/profile");
     } catch (e) {
-      ErroMessage(e.message);
+      ErrorMessage(e.message);
     }
   };
 

@@ -18,7 +18,7 @@ const Signin = () => {
   const navigate = useNavigate();
   const provider = new GoogleAuthProvider();
 
-  const ErroMessage = (msg) => {
+  const ErrorMessage = (msg) => {
     setErrorMsg(msg);
 
     setTimeout(() => {
@@ -30,7 +30,7 @@ const Signin = () => {
     e.preventDefault();
 
     if (userEmail === "" || userPassword === "") {
-      ErroMessage("Please fill all the required fields.");
+      ErrorMessage("Please fill all the required fields.");
       return;
     }
 
@@ -38,7 +38,7 @@ const Signin = () => {
       await signInWithEmailAndPassword(auth, userEmail, userPassword);
       navigate("/profile");
     } catch (e) {
-      ErroMessage(e.message);
+      ErrorMessage(e.message);
     }
   };
 
@@ -47,7 +47,7 @@ const Signin = () => {
       await signInWithPopup(auth, provider);
       navigate("/profile");
     } catch (e) {
-      ErroMessage(e.message);
+      ErrorMessage(e.message);
     }
   };
 
