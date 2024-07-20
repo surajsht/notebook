@@ -9,14 +9,19 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 3.2rem;
+  margin-bottom: 4rem;
+  padding-bottom: 4rem;
+  border-bottom: 1px solid #ababab;
 }
 
 .aside-top-item,
-.aside-top-item a {
+.aside-top-item a,
+.profile-user-info {
   position: relative;
   display: flex;
   align-items: center;
   gap: 1.2rem;
+  cursor: pointer;
 }
 
 .aside-top-item svg {
@@ -42,4 +47,19 @@
   right: -2.2rem;
   translate: 0 -50%;
   font-size: 2.4rem;
+}
+
+.aside-content-middle {
+  margin-bottom: 100%;
+}
+
+.profile-user-info {
+  font-size: 1.8rem;
+  font-weight: 400;
+  cursor: auto;
+  margin-bottom: 1.6rem;
+}
+
+.profile-user-info svg {
+  font-size: 2rem;
 }
