@@ -2,14 +2,15 @@ import { Link } from "react-router-dom";
 import { GoTrash } from "react-icons/go";
 import { IoArchiveOutline } from "react-icons/io5";
 import { SlNote } from "react-icons/sl";
-import { FaBars } from "react-icons/fa";
-import { MdKeyboardArrowRight } from "react-icons/md";
 import { FaPlus } from "react-icons/fa";
 import { FaRegUserCircle } from "react-icons/fa";
 import { FaSignOutAlt } from "react-icons/fa";
+import { InvokeContext } from "../../context/Context";
 import "./sidebar.css";
 
 const Sidebar = () => {
+  const { setNotePopupState } = InvokeContext();
+
   return (
     <aside className="sidebar">
       <h1 className="logo"> NoteBook </h1>
@@ -36,7 +37,10 @@ const Sidebar = () => {
       </div>
 
       <div className="aside-content-middle">
-        <button className="btn profile-primary-btn">
+        <button
+          className="btn profile-primary-btn"
+          onClick={() => setNotePopupState(true)}
+        >
           <FaPlus />
           <span className="sidebar-action-label">Add New Note</span>
         </button>
