@@ -1,5 +1,6 @@
 import { InvokeContext } from "../../context/Context";
-import { IoCloseSharp } from "react-icons/io5";
+import { IoCloseSharp, IoArchiveOutline } from "react-icons/io5";
+import { IoMdAdd } from "react-icons/io";
 import "./notePopup.css";
 
 const NotePopup = () => {
@@ -29,9 +30,17 @@ const NotePopup = () => {
           </div>
         </div>
 
-        <button type="submit" className="note-popup-btn">
-          Add
-        </button>
+        <div className="popup-btn-group">
+          <button type="submit" className="note-popup-btn">
+            <IoMdAdd />
+            Add Note
+          </button>
+
+          <button type="submit" className="note-popup-btn">
+            <IoArchiveOutline />
+            Save to draft
+          </button>
+        </div>
       </form>
     </div>
   );

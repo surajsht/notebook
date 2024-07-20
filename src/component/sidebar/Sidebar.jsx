@@ -2,9 +2,7 @@ import { Link } from "react-router-dom";
 import { GoTrash } from "react-icons/go";
 import { IoArchiveOutline } from "react-icons/io5";
 import { SlNote } from "react-icons/sl";
-import { FaPlus } from "react-icons/fa";
-import { FaRegUserCircle } from "react-icons/fa";
-import { FaSignOutAlt } from "react-icons/fa";
+import { FaPlus, FaSignOutAlt, FaRegUserCircle } from "react-icons/fa";
 import { InvokeContext } from "../../context/Context";
 import "./sidebar.css";
 

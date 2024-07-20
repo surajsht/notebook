@@ -37,14 +37,14 @@
   font-size: 1.6rem;
   width: 48rem;
   outline: 0;
-  padding: 0.8rem;
+  padding: 1.2rem;
   border: 1px solid;
   border-radius: 0.8rem;
 }
 
 .note-popup-form-item input:not(.popup-category-container input),
 .popup-category-container {
-  height: 4.8rem;
+  height: 5.2rem;
 }
 
 .note-popup-form-item textarea {
@@ -64,15 +64,23 @@
 }
 
 .popup-category-container input {
+  font-size: 1.6rem;
   border: 0;
   outline: 0;
   flex-grow: 1;
 }
 
+.popup-btn-group,
+.note-popup-btn {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1.6rem;
+}
+
 .note-popup-btn,
 .note-popup-close {
   font-size: 1.6rem;
-  border: 0;
   outline: 0;
   cursor: pointer;
   color: #fff;
@@ -81,17 +89,29 @@
 
 .note-popup-btn:hover,
 .note-popup-close:hover {
-  background-color: var(--primary-hover-color);
+  color: #fff !important;
+  background-color: var(--primary-hover-color) !important;
+  border-color: var(--primary-hover-color) !important;
 }
 
 .note-popup-btn {
   position: relative;
-  left: 50%;
-  translate: -50% 0;
-  padding: 1.6rem 8rem;
+  padding: 1.6rem 4rem;
   border-radius: 0.8rem;
   letter-spacing: 0.1rem;
   margin-top: 1.2rem;
+  border: 1px solid var(--primary-color);
+  gap: 1rem;
+}
+
+.popup-btn-group .note-popup-btn:last-child {
+  color: #000;
+  border: 1px solid;
+  background-color: transparent;
+}
+
+.note-popup-btn svg {
+  font-size: 2rem;
 }
 
 .note-popup-close {
@@ -101,4 +121,5 @@
   height: 2.4rem;
   width: 2.4rem;
   border-radius: 50%;
+  border: 0;
 }
