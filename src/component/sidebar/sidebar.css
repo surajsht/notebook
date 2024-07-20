@@ -1,10 +1,14 @@
+.sidebar > * {
+  width: 100%;
+}
+
 .logo {
   font-size: 3.2rem;
   letter-spacing: 0.1rem;
   margin-bottom: 3.2rem;
 }
 
-.aside-content-top {
+.sidebar-content-top {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -14,8 +18,8 @@
   border-bottom: 1px solid #ababab;
 }
 
-.aside-top-item,
-.aside-top-item a,
+.sidebar-top-item,
+.sidebar-top-item a,
 .profile-user-info {
   position: relative;
   display: flex;
@@ -24,33 +28,21 @@
   cursor: pointer;
 }
 
-.aside-top-item svg {
+.sidebar-top-item svg {
   font-size: 2rem;
 }
 
-.aside-top-item a {
+.sidebar-top-item a {
   color: inherit;
   text-decoration: none;
 }
 
-.aside-top-item a:hover {
+.sidebar-top-item a:hover {
   color: var(--primary-hover-color);
 }
 
-.aside-top-item:first-child {
-  align-self: flex-end;
-}
-
-.aside-top-item:first-child svg:last-child {
-  position: absolute;
-  top: 50%;
-  right: -2.2rem;
-  translate: 0 -50%;
-  font-size: 2.4rem;
-}
-
 .aside-content-middle {
-  margin-bottom: 100%;
+  margin-bottom: auto;
 }
 
 .profile-user-info {
@@ -58,8 +50,43 @@
   font-weight: 400;
   cursor: auto;
   margin-bottom: 1.6rem;
+  justify-content: center;
 }
 
 .profile-user-info svg {
   font-size: 2rem;
+}
+
+.btn {
+  border: 0;
+  outline: 0;
+  border-radius: 0.8rem;
+  letter-spacing: 0.1rem;
+  cursor: pointer;
+  width: 100%;
+  font-size: 1.6rem;
+  display: flex;
+  align-items: center;
+}
+
+.profile-primary-btn {
+  background-color: var(--primary-color);
+  padding: 1.6rem 2rem;
+  color: #fff;
+  justify-content: space-between;
+}
+
+.profile-primary-btn:hover {
+  background-color: var(--primary-hover-color);
+}
+
+.profile-secondary-btn {
+  background-color: #cecece;
+  padding: 1.2rem;
+  justify-content: center;
+  gap: 1.2rem;
+}
+
+.profile-secondary-btn:hover {
+  background-color: #bcbcbc;
 }

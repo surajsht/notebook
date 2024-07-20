@@ -18,37 +18,3 @@ body {
   color: #141414;
   font-size: 1.6rem;
 }
-
-.btn {
-  border: 0;
-  outline: 0;
-  border-radius: 0.8rem;
-  letter-spacing: 0.1rem;
-  cursor: pointer;
-  width: 100%;
-  font-size: 1.6rem;
-  display: flex;
-  align-items: center;
-}
-
-.primary-btn-with-icon {
-  background-color: var(--primary-color);
-  padding: 1.6rem 2rem;
-  color: #fff;
-  justify-content: space-between;
-}
-
-.primary-btn-with-icon:hover {
-  background-color: var(--primary-hover-color);
-}
-
-.secondary-btn-with-icon {
-  background-color: #cecece;
-  padding: 1.2rem;
-  justify-content: center;
-  gap: 1.2rem;
-}
-
-.secondary-btn-with-icon:hover {
-  background-color: #bcbcbc;
-}

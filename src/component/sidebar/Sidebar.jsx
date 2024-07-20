@@ -14,47 +14,43 @@ const Sidebar = () => {
     <aside className="sidebar">
       <h1 className="logo"> NoteBook </h1>
 
-      <div className="aside-content-top">
-        <div className="aside-top-item">
-          <FaBars />
-          <MdKeyboardArrowRight />
-        </div>
-        <div className="aside-top-item">
+      <div className="sidebar-content-top">
+        <div className="sidebar-top-item">
           <Link to="">
             <SlNote />
-            All Notes
+            <span className="sidebar-action-label">All Notes</span>
           </Link>
         </div>
-        <div className="aside-top-item">
+        <div className="sidebar-top-item">
           <Link to="">
             <IoArchiveOutline />
-            Archive
+            <span className="sidebar-action-label">Archive</span>
           </Link>
         </div>
-        <div className="aside-top-item">
+        <div className="sidebar-top-item">
           <Link to="">
             <GoTrash />
-            Trash
+            <span className="sidebar-action-label">Trash</span>
           </Link>
         </div>
       </div>
 
       <div className="aside-content-middle">
-        <button className="btn primary-btn-with-icon">
+        <button className="btn profile-primary-btn">
           <FaPlus />
-          Add New Note
+          <span className="sidebar-action-label">Add New Note</span>
         </button>
       </div>
 
       <div className="aside-content-bottom">
         <h2 className="profile-user-info">
           <FaRegUserCircle />
-          username
+          <span className="sidebar-action-label">username</span>
         </h2>
 
-        <button className="btn secondary-btn-with-icon">
+        <button className="btn profile-secondary-btn">
           <FaSignOutAlt />
-          Sign Out
+          <span className="sidebar-action-label">Sign Out</span>
         </button>
       </div>
     </aside>
