@@ -7,44 +7,49 @@ import { InvokeContext } from "../../context/Context";
 import "./sidebar.css";
 
 const Sidebar = () => {
-  const { setNotePopupState } = InvokeContext();
+  const { setNotePopupState, setSidebarActive } = InvokeContext();
+
+  const AddNewNote = () => {
+    setNotePopupState(true);
+    setSidebarActive(false);
+  };
 
   return (
     <aside className="sidebar">
-      <h1 className="logo"> NoteBook </h1>
-
       <div className="sidebar-content-top">
-        <div className="sidebar-top-item">
-          <Link to="">
-            <SlNote />
-            <span className="sidebar-action-label">All Notes</span>
-          </Link>
-        </div>
-        <div className="sidebar-top-item">
-          <Link to="">
-            <IoArchiveOutline />
-            <span className="sidebar-action-label">Archive</span>
-          </Link>
-        </div>
-        <div className="sidebar-top-item">
-          <Link to="">
-            <GoTrash />
-            <span className="sidebar-action-label">Trash</span>
-          </Link>
-        </div>
-      </div>
+        <h1 className="logo"> NoteBook </h1>
 
-      <div className="aside-content-middle">
+        <div className="sidebar-option-container">
+          <div className="sidebar-top-option">
+            <Link to="">
+              <SlNote />
+              <span className="sidebar-action-label">All Notes</span>
+            </Link>
+          </div>
+          <div className="sidebar-top-option">
+            <Link to="">
+              <IoArchiveOutline />
+              <span className="sidebar-action-label">Archive</span>
+            </Link>
+          </div>
+          <div className="sidebar-top-option">
+            <Link to="">
+              <GoTrash />
+              <span className="sidebar-action-label">Trash</span>
+            </Link>
+          </div>
+        </div>
+
         <button
           className="btn profile-primary-btn"
-          onClick={() => setNotePopupState(true)}
+          onClick={() => AddNewNote()}
         >
           <FaPlus />
           <span className="sidebar-action-label">Add New Note</span>
         </button>
       </div>
 
-      <div className="aside-content-bottom">
+      <div className="sidebar-content-bottom">
         <h2 className="profile-user-info">
           <FaRegUserCircle />
           <span className="sidebar-action-label">username</span>
