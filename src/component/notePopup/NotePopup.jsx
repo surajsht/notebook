@@ -4,12 +4,15 @@ import { IoMdAdd } from "react-icons/io";
 import "./notePopup.css";
 
 const NotePopup = () => {
-  const { notePopupState } = InvokeContext();
+  const { notePopupState, setNotePopupState } = InvokeContext();
 
   return (
     <div className={`note-popup ${notePopupState ? "active" : ""}`}>
-      <form className="note-popup-form">
-        <button className="note-popup-close">
+      <form className="note-popup-form" onSubmit={(e) => e.preventDefault()}>
+        <button
+          className="note-popup-close"
+          onClick={() => setNotePopupState(false)}
+        >
           <IoCloseSharp />
         </button>
 
