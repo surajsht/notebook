@@ -5,8 +5,17 @@ const InitializeContext = createContext();
 
 const Context = ({ children }) => {
   const [notePopupState, setNotePopupState] = useState(false);
+  const [gridLayout, setGridLayout] = useState(true);
+  const [sidebarActive, setSidebarActive] = useState(false);
 
-  const contextValue = { notePopupState, setNotePopupState };
+  const contextValue = {
+    notePopupState,
+    setNotePopupState,
+    gridLayout,
+    setGridLayout,
+    sidebarActive,
+    setSidebarActive,
+  };
 
   return (
     <InitializeContext.Provider value={contextValue}>
