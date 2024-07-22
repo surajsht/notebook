@@ -8,6 +8,7 @@
 .topbar-container svg {
   font-size: 2.4rem;
   cursor: pointer;
+  vertical-align: middle;
 }
 
 .topbar-middle,
@@ -21,6 +22,7 @@
 @media (max-width: 767px) {
   .topbar-middle {
     margin-left: auto;
+    gap: 1.2rem;
   }
 }
 
@@ -70,4 +72,10 @@
 .topbar-right.grid-layout .list-layout,
 .topbar-right.list-layout .grid-layout {
   display: none;
+}
+
+@media (max-width: 767px) {
+  .topbar-right {
+    display: none;
+  }
 }
