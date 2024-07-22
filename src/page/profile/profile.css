@@ -5,7 +5,7 @@
   position: relative;
   display: flex;
   flex-wrap: wrap;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 @media (max-width: 991px) {
@@ -53,6 +53,12 @@
   padding: 2.4rem;
   transform: translateX(0);
   transition: transform var(--transition-time);
+}
+
+@media (max-width: 575px) {
+  .main {
+    padding: 1.6rem;
+  }
 }
 
 .profile-container.active .main {

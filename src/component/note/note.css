@@ -1,0 +1,90 @@
+.note-container.grid-layout {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3.2rem;
+  margin-top: 4rem;
+}
+
+@media (max-width: 1199px) {
+  .note-container.grid-layout {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 767px) {
+  .note-container.grid-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.note-container.list-layout {
+  max-width: 72rem;
+  margin: 4rem auto;
+}
+
+.note-container.list-layout .note-item:not(:last-child) {
+  margin-bottom: 3.2rem;
+}
+
+.note-item {
+  position: relative;
+  padding: 3.2rem;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  border-radius: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+@media (max-width: 767px) {
+  .note-item {
+    padding: 3.2rem 2.4rem 2.4rem;
+  }
+}
+
+.note-item > svg {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 2.4rem;
+}
+
+.note-item > svg.active,
+.note-item > svg:hover {
+  color: var(--primary-hover-color);
+}
+
+.note-title {
+  font-size: 2.5rem;
+  margin-bottom: 1.6rem;
+}
+
+.note-description {
+  line-height: 1.5;
+  margin-bottom: 1.6rem;
+}
+
+.note-item-bottom {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.note-time {
+  font-size: 1.4rem;
+}
+
+.note-btn-group svg {
+  font-size: 1.8rem;
+}
+
+.note-btn-group svg:hover {
+  color: var(--primary-hover-color);
+}
+
+.note-btn-group svg:not(:last-child) {
+  margin-right: 1rem;
+}
