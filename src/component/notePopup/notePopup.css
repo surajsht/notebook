@@ -24,6 +24,8 @@
   padding: 3.2rem;
   background-color: #fff;
   border-radius: 0.8rem;
+  max-height: calc(100% - 4rem);
+  overflow-y: auto;
 }
 
 @media (max-width: 575px) {
@@ -31,6 +33,22 @@
     width: calc(100% - 3rem);
     padding: 2.4rem 1.6rem;
   }
+}
+
+.note-popup-form::-webkit-scrollbar {
+  width: 0.6rem;
+}
+
+.note-popup-form::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.note-popup-form::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+.note-popup-form::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
 
 .note-popup-form-item {
@@ -45,7 +63,7 @@
   margin-bottom: 1.2rem;
 }
 
-.note-popup-form-item input:not(.popup-category-container input),
+.note-popup-form-item input:not(.popup-category-tag-container input),
 .note-popup-form-item textarea {
   font-size: 1.6rem;
   width: 48rem;
@@ -56,14 +74,14 @@
 }
 
 @media (max-width: 575px) {
-  .note-popup-form-item input:not(.popup-category-container input),
+  .note-popup-form-item input:not(.popup-category-tag-container input),
   .note-popup-form-item textarea {
     width: 100%;
   }
 }
 
-.note-popup-form-item input:not(.popup-category-container input),
-.popup-category-container {
+.note-popup-form-item input:not(.popup-category-tag-container input),
+.popup-category-tag-container {
   min-height: 5.2rem;
 }
 
@@ -72,7 +90,7 @@
   height: 16rem;
 }
 
-.popup-category-container {
+.popup-category-tag-container {
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -83,7 +101,7 @@
   padding: 0.8rem;
 }
 
-.popup-category-container input {
+.popup-category-tag-container input {
   font-size: 1.6rem;
   border: 0;
   outline: 0;

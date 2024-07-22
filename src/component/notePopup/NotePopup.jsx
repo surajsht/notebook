@@ -28,8 +28,15 @@ const NotePopup = () => {
 
         <div className="note-popup-form-item">
           <label htmlFor="title"> Category </label>
-          <div className="popup-category-container">
+          <div className="popup-category-tag-container">
             <input type="text" placeholder="Add a category" />
+          </div>
+        </div>
+
+        <div className="note-popup-form-item">
+          <label htmlFor="title"> Tags </label>
+          <div className="popup-category-tag-container">
+            <input type="text" placeholder="Add a Tag" />
           </div>
         </div>
 
