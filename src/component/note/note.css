@@ -36,6 +36,9 @@
   align-items: flex-start;
   justify-content: space-between;
   cursor: pointer;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 @media (max-width: 767px) {
