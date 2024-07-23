@@ -4,14 +4,27 @@ import { IoArchiveOutline } from "react-icons/io5";
 import { SlNote } from "react-icons/sl";
 import { FaPlus, FaSignOutAlt, FaRegUserCircle } from "react-icons/fa";
 import { InvokeContext } from "../../context/Context";
+import { auth } from "../../fireConfig/FireConfig";
+import { signOut } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 import "./sidebar.css";
 
 const Sidebar = () => {
   const { setNotePopupState, setSidebarActive } = InvokeContext();
+  const navigate = useNavigate();
 
   const AddNewNote = () => {
     setNotePopupState(true);
     setSidebarActive(false);
+  };
+
+  const signOutUser = async () => {
+    try {
+      await signOut(auth);
+      navigate("/");
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   return (
@@ -55,7 +68,7 @@ const Sidebar = () => {
           <span className="sidebar-action-label">username</span>
         </h2>
 
-        <button className="btn profile-secondary-btn">
+        <button className="btn profile-secondary-btn" onClick={signOutUser}>
           <FaSignOutAlt />
           <span className="sidebar-action-label">Sign Out</span>
         </button>
