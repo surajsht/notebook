@@ -1,11 +1,15 @@
 import { FaEdit } from "react-icons/fa";
 import { GoTrash } from "react-icons/go";
 import { RiPushpin2Line } from "react-icons/ri";
+import { InvokeContext } from "../../context/Context";
 import "./note.css";
 
 const Note = () => {
+  const { gridLayout } = InvokeContext();
   return (
-    <div className="note-container grid-layout">
+    <div
+      className={`note-container ${gridLayout ? "grid-layout" : "list-layout"}`}
+    >
       <div className="note-item">
         <RiPushpin2Line />
 
