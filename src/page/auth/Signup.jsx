@@ -2,14 +2,14 @@ import { Link, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import { IoAlertCircle } from "react-icons/io5";
 import { useState } from "react";
-import { auth, db } from "../../fireConfig/FireConfig";
+import { auth } from "../../fireConfig/FireConfig";
 import {
   createUserWithEmailAndPassword,
   updateProfile,
   GoogleAuthProvider,
   signInWithPopup,
 } from "firebase/auth";
-import { setDoc, doc } from "firebase/firestore";
+import { setInitialDoc } from "../../component/customFunction/SetInitialDoc";
 import "./auth.css";
 
 const Signup = () => {
@@ -30,14 +30,6 @@ const Signup = () => {
     }, 3000);
   };
 
-  const setInitialDoc = (email) => {
-    return setDoc(doc(db, "users", email), {
-      allNotes: [],
-      draftNotes: [],
-      trashNotes: [],
-    });
-  };
-
   const UserAuthWithEmailAndPassword = async (e) => {
     e.preventDefault();
 
@@ -51,7 +43,7 @@ const Signup = () => {
       await updateProfile(auth.currentUser, {
         displayName: `${userName} ${userLastName}`.trim(),
       });
-      await setInitialDoc(userEmail);
+      setInitialDoc(userEmail);
       navigate("/profile");
     } catch (e) {
       ErrorMessage(e.message);
@@ -61,7 +53,7 @@ const Signup = () => {
   const UserAuthWithGoogle = async () => {
     try {
       await signInWithPopup(auth, provider);
-      await setInitialDoc(auth.currentUser.email);
+      setInitialDoc(auth.currentUser.email);
       navigate("/profile");
     } catch (e) {
       ErrorMessage(e.message);

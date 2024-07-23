@@ -8,6 +8,7 @@ import {
   GoogleAuthProvider,
   signInWithPopup,
 } from "firebase/auth";
+import { setInitialDoc } from "../../component/customFunction/SetInitialDoc";
 import "./auth.css";
 
 const Signin = () => {
@@ -45,6 +46,7 @@ const Signin = () => {
   const UserAuthWithGoogle = async () => {
     try {
       await signInWithPopup(auth, provider);
+      setInitialDoc(auth.currentUser.email);
       navigate("/profile");
     } catch (e) {
       ErrorMessage(e.message);
