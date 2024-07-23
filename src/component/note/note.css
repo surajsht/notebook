@@ -57,6 +57,10 @@
   }
 }
 
+.note-item:hover {
+  background-color: #f4f4f4;
+}
+
 .note-item > svg {
   position: absolute;
   top: 1rem;
