@@ -40,22 +40,34 @@ const NotePopup = () => {
     }
   };
 
-  const addNewNote = async () => {
+  const addNewNote = async (task) => {
     const random4DigitNumber = Math.floor(1000 + Math.random() * 9000);
 
     if (!noteTitle && !noteDesc && !getNoteCategoryList && !noteTagsList)
       return alert("Please Enter Some Data");
 
     try {
-      await updateDoc(userDocRef, {
-        allNotes: arrayUnion({
-          id: random4DigitNumber,
-          title: noteTitle,
-          desc: noteDesc,
-          category: noteCategoryList,
-          tag: noteTagsList,
-        }),
-      });
+      if (task === "addNote") {
+        await updateDoc(userDocRef, {
+          allNotes: arrayUnion({
+            id: random4DigitNumber,
+            title: noteTitle,
+            desc: noteDesc,
+            category: noteCategoryList,
+            tag: noteTagsList,
+          }),
+        });
+      } else {
+        await updateDoc(userDocRef, {
+          draftNotes: arrayUnion({
+            id: random4DigitNumber,
+            title: noteTitle,
+            desc: noteDesc,
+            category: noteCategoryList,
+            tag: noteTagsList,
+          }),
+        });
+      }
       alert("Note added successfully");
       setNoteTitle("");
       setNoteDesc("");
@@ -143,12 +155,20 @@ const NotePopup = () => {
         </div>
 
         <div className="popup-btn-group">
-          <button type="submit" className="note-popup-btn" onClick={addNewNote}>
+          <button
+            type="submit"
+            className="note-popup-btn"
+            onClick={() => addNewNote("addNote")}
+          >
             <IoMdAdd />
             Add Note
           </button>
 
-          <button type="submit" className="note-popup-btn">
+          <button
+            type="submit"
+            className="note-popup-btn"
+            onClick={() => addNewNote("draftNote")}
+          >
             <IoArchiveOutline />
             Save to draft
           </button>
