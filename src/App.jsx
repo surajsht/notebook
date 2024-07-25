@@ -8,16 +8,16 @@ const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Signin />} />
-        <Route path="/signup" element={<Signup />} />
         <Route
-          path="/profile"
+          path="/"
           element={
             <ProtectedRoute>
               <Profile />
             </ProtectedRoute>
           }
         />
+        <Route path="/signin" element={<Signin />} />
+        <Route path="/signup" element={<Signup />} />
       </Routes>
     </BrowserRouter>
   );

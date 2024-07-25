@@ -44,7 +44,7 @@ const Signup = () => {
         displayName: `${userName} ${userLastName}`.trim(),
       });
       setInitialDoc(userEmail);
-      navigate("/profile");
+      navigate("/");
     } catch (e) {
       ErrorMessage(e.message);
     }
@@ -54,7 +54,7 @@ const Signup = () => {
     try {
       await signInWithPopup(auth, provider);
       setInitialDoc(auth.currentUser.email);
-      navigate("/profile");
+      navigate("/");
     } catch (e) {
       ErrorMessage(e.message);
     }

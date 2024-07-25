@@ -7,7 +7,7 @@ const ProtectedRoute = ({ children }) => {
 
   if (profileLoading) return <h1> Loading... </h1>;
 
-  if (!currentUser) return navigate("/");
+  if (!currentUser) return navigate("/signin");
 
   return children;
 };

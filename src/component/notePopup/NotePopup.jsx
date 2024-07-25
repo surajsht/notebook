@@ -55,6 +55,7 @@ const NotePopup = () => {
             desc: noteDesc,
             category: noteCategoryList,
             tag: noteTagsList,
+            pinned: false,
           }),
         });
       } else {

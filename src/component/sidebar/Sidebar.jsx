@@ -21,7 +21,7 @@ const Sidebar = () => {
   const signOutUser = async () => {
     try {
       await signOut(auth);
-      navigate("/");
+      navigate("/signin");
     } catch (e) {
       console.log(e);
     }

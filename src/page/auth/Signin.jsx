@@ -37,7 +37,7 @@ const Signin = () => {
 
     try {
       await signInWithEmailAndPassword(auth, userEmail, userPassword);
-      navigate("/profile");
+      navigate("/");
     } catch (e) {
       ErrorMessage(e.message);
     }
@@ -47,7 +47,7 @@ const Signin = () => {
     try {
       await signInWithPopup(auth, provider);
       setInitialDoc(auth.currentUser.email);
-      navigate("/profile");
+      navigate("/");
     } catch (e) {
       ErrorMessage(e.message);
     }
