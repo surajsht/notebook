@@ -1,311 +1,61 @@
+import { useEffect, useState } from "react";
 import { FaEdit } from "react-icons/fa";
 import { GoTrash } from "react-icons/go";
 import { RiPushpin2Line } from "react-icons/ri";
 import { InvokeContext } from "../../context/Context";
+import { db } from "../../fireConfig/FireConfig";
+import { doc, onSnapshot } from "firebase/firestore";
 import "./note.css";
 
 const Note = () => {
-  const { gridLayout } = InvokeContext();
+  const [allnoteLoading, setAllNoteLoading] = useState(true);
+
+  const { gridLayout, currentUser, currentNotes, setCurrentNotes } =
+    InvokeContext();
+
+  useEffect(() => {
+    onSnapshot(doc(db, "users", `${currentUser?.email}`), (doc) => {
+      setCurrentNotes(doc.data()?.allNotes);
+      setAllNoteLoading(false);
+    });
+  }, [currentUser.email]);
+
+  if (allnoteLoading) return <h2> Loading... </h2>;
+
   return (
     <div
       className={`note-container ${gridLayout ? "grid-layout" : "list-layout"}`}
     >
-      <div className="note-item">
-        <RiPushpin2Line />
+      {currentNotes.map((item) => {
+        let { id, title, desc, category, pinned } = item;
 
-        <div className="note-item-top">
-          <h2 className="note-title">
-            Lorem ipsum dolor sit amet consectetur.
-          </h2>
+        return (
+          <div key={id} className="note-item">
+            <RiPushpin2Line className={`${pinned ? "active" : ""}`} />
 
-          <p className="note-description">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-            Repudiandae, suscipit sapiente quaerat blanditiis accusamus animi
-            totam, alias sed iure laboriosam facilis ea voluptas consequatur
-            quasi similique consequuntur hic dolor! Maiores tempore repudiandae
-            voluptas minima placeat, dolor nemo tempora atque voluptatem.
-          </p>
-        </div>
+            <div className="note-item-top">
+              <h2 className="note-title">{title}</h2>
 
-        <div className="note-item-bottom">
-          <span className="note-time"> time </span>
+              <p className="note-description">{desc}</p>
+            </div>
 
-          <div className="note-btn-group">
-            <FaEdit />
-            <GoTrash />
+            <div className="note-item-middle">
+              {category.map((cat, idx) => {
+                return <span key={idx}> {cat} </span>;
+              })}
+            </div>
+
+            <div className="note-item-bottom">
+              <span className="note-time"> time </span>
+
+              <div className="note-btn-group">
+                <FaEdit />
+                <GoTrash />
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-
-      <div className="note-item">
-        <RiPushpin2Line />
-
-        <div className="note-item-top">
-          <h2 className="note-title">
-            Lorem ipsum dolor sit amet consectetur.
-          </h2>
-
-          <p className="note-description">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-            Repudiandae, suscipit sapiente quaerat blanditiis accusamus animi
-            totam, alias sed iure laboriosam facilis ea voluptas consequatur
-            quasi similique consequuntur hic dolor! Maiores tempore repudiandae
-            voluptas minima placeat, dolor nemo tempora atque voluptatem.
-          </p>
-        </div>
-
-        <div className="note-item-bottom">
-          <span className="note-time"> time </span>
-
-          <div className="note-btn-group">
-            <FaEdit />
-            <GoTrash />
-          </div>
-        </div>
-      </div>
-
-      <div className="note-item">
-        <RiPushpin2Line />
-
-        <div className="note-item-top">
-          <h2 className="note-title">
-            Lorem ipsum dolor sit amet consectetur.
-          </h2>
-
-          <p className="note-description">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-            Repudiandae, suscipit sapiente quaerat blanditiis accusamus animi
-            totam, alias sed iure laboriosam facilis ea voluptas consequatur
-            quasi similique consequuntur hic dolor! Maiores tempore repudiandae
-            voluptas minima placeat, dolor nemo tempora atque voluptatem.
-          </p>
-        </div>
-
-        <div className="note-item-bottom">
-          <span className="note-time"> time </span>
-
-          <div className="note-btn-group">
-            <FaEdit />
-            <GoTrash />
-          </div>
-        </div>
-      </div>
-
-      <div className="note-item">
-        <RiPushpin2Line />
-
-        <div className="note-item-top">
-          <h2 className="note-title">
-            Lorem ipsum dolor sit amet consectetur.
-          </h2>
-
-          <p className="note-description">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-            Repudiandae, suscipit sapiente quaerat blanditiis accusamus animi
-            totam, alias sed iure laboriosam facilis ea voluptas consequatur
-            quasi similique consequuntur hic dolor! Maiores tempore repudiandae
-            voluptas minima placeat, dolor nemo tempora atque voluptatem.
-          </p>
-        </div>
-
-        <div className="note-item-bottom">
-          <span className="note-time"> time </span>
-
-          <div className="note-btn-group">
-            <FaEdit />
-            <GoTrash />
-          </div>
-        </div>
-      </div>
-
-      <div className="note-item">
-        <RiPushpin2Line />
-
-        <div className="note-item-top">
-          <h2 className="note-title">
-            Lorem ipsum dolor sit amet consectetur.
-          </h2>
-
-          <p className="note-description">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-            Repudiandae, suscipit sapiente quaerat blanditiis accusamus animi
-            totam, alias sed iure laboriosam facilis ea voluptas consequatur
-            quasi similique consequuntur hic dolor! Maiores tempore repudiandae
-            voluptas minima placeat, dolor nemo tempora atque voluptatem.
-          </p>
-        </div>
-
-        <div className="note-item-bottom">
-          <span className="note-time"> time </span>
-
-          <div className="note-btn-group">
-            <FaEdit />
-            <GoTrash />
-          </div>
-        </div>
-      </div>
-
-      <div className="note-item">
-        <RiPushpin2Line />
-
-        <div className="note-item-top">
-          <h2 className="note-title">
-            Lorem ipsum dolor sit amet consectetur.
-          </h2>
-
-          <p className="note-description">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-            Repudiandae, suscipit sapiente quaerat blanditiis accusamus animi
-            totam, alias sed iure laboriosam facilis ea voluptas consequatur
-            quasi similique consequuntur hic dolor! Maiores tempore repudiandae
-            voluptas minima placeat, dolor nemo tempora atque voluptatem.
-          </p>
-        </div>
-
-        <div className="note-item-bottom">
-          <span className="note-time"> time </span>
-
-          <div className="note-btn-group">
-            <FaEdit />
-            <GoTrash />
-          </div>
-        </div>
-      </div>
-
-      <div className="note-item">
-        <RiPushpin2Line />
-
-        <div className="note-item-top">
-          <h2 className="note-title">
-            Lorem ipsum dolor sit amet consectetur.
-          </h2>
-
-          <p className="note-description">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-            Repudiandae, suscipit sapiente quaerat blanditiis accusamus animi
-            totam, alias sed iure laboriosam facilis ea voluptas consequatur
-            quasi similique consequuntur hic dolor! Maiores tempore repudiandae
-            voluptas minima placeat, dolor nemo tempora atque voluptatem.
-          </p>
-        </div>
-
-        <div className="note-item-bottom">
-          <span className="note-time"> time </span>
-
-          <div className="note-btn-group">
-            <FaEdit />
-            <GoTrash />
-          </div>
-        </div>
-      </div>
-
-      <div className="note-item">
-        <RiPushpin2Line />
-
-        <div className="note-item-top">
-          <h2 className="note-title">
-            Lorem ipsum dolor sit amet consectetur.
-          </h2>
-
-          <p className="note-description">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-            Repudiandae, suscipit sapiente quaerat blanditiis accusamus animi
-            totam, alias sed iure laboriosam facilis ea voluptas consequatur
-            quasi similique consequuntur hic dolor! Maiores tempore repudiandae
-            voluptas minima placeat, dolor nemo tempora atque voluptatem.
-          </p>
-        </div>
-
-        <div className="note-item-bottom">
-          <span className="note-time"> time </span>
-
-          <div className="note-btn-group">
-            <FaEdit />
-            <GoTrash />
-          </div>
-        </div>
-      </div>
-
-      <div className="note-item">
-        <RiPushpin2Line />
-
-        <div className="note-item-top">
-          <h2 className="note-title">
-            Lorem ipsum dolor sit amet consectetur.
-          </h2>
-
-          <p className="note-description">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-            Repudiandae, suscipit sapiente quaerat blanditiis accusamus animi
-            totam, alias sed iure laboriosam facilis ea voluptas consequatur
-            quasi similique consequuntur hic dolor! Maiores tempore repudiandae
-            voluptas minima placeat, dolor nemo tempora atque voluptatem.
-          </p>
-        </div>
-
-        <div className="note-item-bottom">
-          <span className="note-time"> time </span>
-
-          <div className="note-btn-group">
-            <FaEdit />
-            <GoTrash />
-          </div>
-        </div>
-      </div>
-
-      <div className="note-item">
-        <RiPushpin2Line />
-
-        <div className="note-item-top">
-          <h2 className="note-title">
-            Lorem ipsum dolor sit amet consectetur.
-          </h2>
-
-          <p className="note-description">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-            Repudiandae, suscipit sapiente quaerat blanditiis accusamus animi
-            totam, alias sed iure laboriosam facilis ea voluptas consequatur
-            quasi similique consequuntur hic dolor! Maiores tempore repudiandae
-            voluptas minima placeat, dolor nemo tempora atque voluptatem.
-          </p>
-        </div>
-
-        <div className="note-item-bottom">
-          <span className="note-time"> time </span>
-
-          <div className="note-btn-group">
-            <FaEdit />
-            <GoTrash />
-          </div>
-        </div>
-      </div>
-
-      <div className="note-item">
-        <RiPushpin2Line />
-
-        <div className="note-item-top">
-          <h2 className="note-title">
-            Lorem ipsum dolor sit amet consectetur.
-          </h2>
-
-          <p className="note-description">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-            Repudiandae, suscipit sapiente quaerat blanditiis accusamus animi
-            totam, alias sed iure laboriosam facilis ea voluptas consequatur
-            quasi similique consequuntur hic dolor! Maiores tempore repudiandae
-            voluptas minima placeat, dolor nemo tempora atque voluptatem.
-          </p>
-        </div>
-
-        <div className="note-item-bottom">
-          <span className="note-time"> time </span>
-
-          <div className="note-btn-group">
-            <FaEdit />
-            <GoTrash />
-          </div>
-        </div>
-      </div>
+        );
+      })}
     </div>
   );
 };

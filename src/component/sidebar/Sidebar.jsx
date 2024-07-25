@@ -65,7 +65,9 @@ const Sidebar = () => {
       <div className="sidebar-content-bottom">
         <h2 className="profile-user-info">
           <FaRegUserCircle />
-          <span className="sidebar-action-label">username</span>
+          <span className="sidebar-action-label">
+            {auth.currentUser.displayName}
+          </span>
         </h2>
 
         <button className="btn profile-secondary-btn" onClick={signOutUser}>

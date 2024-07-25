@@ -11,8 +11,6 @@ const NotePopup = () => {
   const [noteDesc, setNoteDesc] = useState("");
   const [noteCategory, setNoteCategory] = useState("");
   const [noteCategoryList, setNoteCategoryList] = useState([]);
-  const [noteTags, setNoteTags] = useState("");
-  const [noteTagsList, setNoteTagsList] = useState([]);
   const { currentUser } = InvokeContext();
 
   const { notePopupState, setNotePopupState } = InvokeContext();
@@ -29,21 +27,10 @@ const NotePopup = () => {
     }
   };
 
-  const getNoteTagsList = (e) => {
-    if (e.key === " ") {
-      e.preventDefault();
-
-      if (noteTags.trim() !== "") {
-        setNoteTagsList([...noteTagsList, noteTags.trim()]);
-        setNoteTags("");
-      }
-    }
-  };
-
   const addNewNote = async (task) => {
     const random4DigitNumber = Math.floor(1000 + Math.random() * 9000);
 
-    if (!noteTitle && !noteDesc && !getNoteCategoryList && !noteTagsList)
+    if (!noteTitle && !noteDesc && !getNoteCategoryList)
       return alert("Please Enter Some Data");
 
     try {
@@ -54,7 +41,6 @@ const NotePopup = () => {
             title: noteTitle,
             desc: noteDesc,
             category: noteCategoryList,
-            tag: noteTagsList,
             pinned: false,
           }),
         });
@@ -65,7 +51,6 @@ const NotePopup = () => {
             title: noteTitle,
             desc: noteDesc,
             category: noteCategoryList,
-            tag: noteTagsList,
           }),
         });
       }
@@ -73,7 +58,6 @@ const NotePopup = () => {
       setNoteTitle("");
       setNoteDesc("");
       setNoteCategoryList([]);
-      setNoteTagsList([]);
       setNotePopupState(false);
     } catch (e) {
       console.error(e);
@@ -111,10 +95,10 @@ const NotePopup = () => {
 
         <div className="note-popup-form-item">
           <label htmlFor="title"> Category </label>
-          <div className="popup-category-tag-container">
+          <div className="popup-category-container">
             {noteCategoryList.map((item, idx) => {
               return (
-                <span key={idx} className="popup-category-tag-item">
+                <span key={idx} className="popup-category--item">
                   {item}
                   <button className="category-tag-item-delete">
                     <IoCloseSharp />
@@ -128,29 +112,6 @@ const NotePopup = () => {
               value={noteCategory}
               onChange={(e) => setNoteCategory(e.target.value)}
               onKeyDown={(e) => getNoteCategoryList(e)}
-            />
-          </div>
-        </div>
-
-        <div className="note-popup-form-item">
-          <label htmlFor="title"> Tags </label>
-          <div className="popup-category-tag-container">
-            {noteTagsList.map((item, idx) => {
-              return (
-                <span key={idx} className="popup-category-tag-item">
-                  {item}
-                  <button className="category-tag-item-delete">
-                    <IoCloseSharp />
-                  </button>
-                </span>
-              );
-            })}
-            <input
-              type="text"
-              placeholder="Add a Tag"
-              value={noteTags}
-              onChange={(e) => setNoteTags(e.target.value)}
-              onKeyDown={(e) => getNoteTagsList(e)}
             />
           </div>
         </div>

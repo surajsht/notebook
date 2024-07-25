@@ -11,6 +11,7 @@ const Context = ({ children }) => {
   const [sidebarActive, setSidebarActive] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
   const [profileLoading, setProfileLoading] = useState(true);
+  const [currentNotes, setCurrentNotes] = useState([]);
 
   useEffect(() => {
     const checkAuthStatus = onAuthStateChanged(auth, (user) => {
@@ -30,6 +31,8 @@ const Context = ({ children }) => {
     setSidebarActive,
     currentUser,
     profileLoading,
+    currentNotes,
+    setCurrentNotes,
   };
 
   return (
