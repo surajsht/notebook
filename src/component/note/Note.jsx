@@ -4,7 +4,7 @@ import { GoTrash } from "react-icons/go";
 import { RiPushpin2Line } from "react-icons/ri";
 import { InvokeContext } from "../../context/Context";
 import { db } from "../../fireConfig/FireConfig";
-import { doc, onSnapshot, updateDoc } from "firebase/firestore";
+import { arrayUnion, doc, onSnapshot, updateDoc } from "firebase/firestore";
 import "./note.css";
 
 const Note = () => {
@@ -42,6 +42,21 @@ const Note = () => {
     }
   };
 
+  const deleteNote = async (id) => {
+    let newNotes = currentNotes.filter((note) => note.id !== id);
+    let findDelNote = currentNotes.find((note) => note.id === id);
+    try {
+      await updateDoc(userRef, {
+        allNotes: newNotes,
+      });
+      await updateDoc(userRef, {
+        trashNotes: arrayUnion(findDelNote),
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   if (allnoteLoading) return <h2> Loading... </h2>;
 
   return (
@@ -70,7 +85,7 @@ const Note = () => {
             </div>
 
             <div className="note-item-middle">
-              {category.map((cat, idx) => {
+              {category?.map((cat, idx) => {
                 return <span key={idx}> {cat} </span>;
               })}
             </div>
@@ -80,7 +95,7 @@ const Note = () => {
 
               <div className="note-btn-group">
                 <FaEdit />
-                <GoTrash />
+                <GoTrash onClick={() => deleteNote(id)} />
               </div>
             </div>
           </div>
