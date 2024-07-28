@@ -6,8 +6,18 @@ import { InvokeContext } from "../../context/Context";
 import "./topbar.css";
 
 const Topbar = () => {
-  const { gridLayout, setGridLayout, sidebarActive, setSidebarActive } =
-    InvokeContext();
+  const {
+    gridLayout,
+    setGridLayout,
+    sidebarActive,
+    setSidebarActive,
+    pinPost,
+    setPinPost,
+  } = InvokeContext();
+
+  const showPinnedPost = () => {
+    setPinPost(!pinPost);
+  };
 
   return (
     <div className="topbar-container">
@@ -21,7 +31,10 @@ const Topbar = () => {
           </button>
         </form>
 
-        <RiPushpin2Line />
+        <RiPushpin2Line
+          className={`${pinPost ? "active" : ""} `}
+          onClick={showPinnedPost}
+        />
       </div>
 
       <div

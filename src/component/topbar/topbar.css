@@ -11,6 +11,10 @@
   vertical-align: middle;
 }
 
+.topbar-container svg.active {
+  color: var(--primary-hover-color);
+}
+
 .topbar-middle,
 .topbar-form {
   display: flex;

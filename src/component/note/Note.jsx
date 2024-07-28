@@ -4,14 +4,16 @@ import { GoTrash } from "react-icons/go";
 import { RiPushpin2Line } from "react-icons/ri";
 import { InvokeContext } from "../../context/Context";
 import { db } from "../../fireConfig/FireConfig";
-import { doc, onSnapshot } from "firebase/firestore";
+import { doc, onSnapshot, updateDoc } from "firebase/firestore";
 import "./note.css";
 
 const Note = () => {
   const [allnoteLoading, setAllNoteLoading] = useState(true);
 
-  const { gridLayout, currentUser, currentNotes, setCurrentNotes } =
+  const { gridLayout, currentUser, currentNotes, setCurrentNotes, pinPost } =
     InvokeContext();
+
+  const userRef = doc(db, "users", `${currentUser.email}`);
 
   useEffect(() => {
     onSnapshot(doc(db, "users", `${currentUser?.email}`), (doc) => {
@@ -20,18 +22,46 @@ const Note = () => {
     });
   }, [currentUser.email]);
 
+  const pinNote = async (id) => {
+    try {
+      let updatePin = currentNotes.map((note) => {
+        if (note.id === id) {
+          return {
+            ...note,
+            pinned: !note.pinned,
+          };
+        }
+
+        return note;
+      });
+      await updateDoc(userRef, {
+        allNotes: updatePin,
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   if (allnoteLoading) return <h2> Loading... </h2>;
 
   return (
     <div
-      className={`note-container ${gridLayout ? "grid-layout" : "list-layout"}`}
+      className={`note-container ${
+        gridLayout ? "grid-layout" : "list-layout"
+      } ${pinPost ? "show-pinned" : ""}`}
     >
       {currentNotes.map((item) => {
         let { id, title, desc, category, pinned } = item;
 
         return (
-          <div key={id} className="note-item">
-            <RiPushpin2Line className={`${pinned ? "active" : ""}`} />
+          <div
+            key={id}
+            className={`note-item ${pinPost && pinned ? "pinned-note" : ""}`}
+          >
+            <RiPushpin2Line
+              className={`${pinned ? "active" : ""}`}
+              onClick={() => pinNote(id)}
+            />
 
             <div className="note-item-top">
               <h2 className="note-title">{title}</h2>

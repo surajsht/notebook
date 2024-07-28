@@ -31,6 +31,10 @@
   margin: 4rem auto;
 }
 
+.show-pinned .note-item:not(.note-item.pinned-note) {
+  display: none;
+}
+
 .note-container.list-layout .note-item:not(:last-child) {
   margin-bottom: 3.2rem;
 }

@@ -12,6 +12,7 @@ const Context = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const [profileLoading, setProfileLoading] = useState(true);
   const [currentNotes, setCurrentNotes] = useState([]);
+  const [pinPost, setPinPost] = useState(false);
 
   useEffect(() => {
     const checkAuthStatus = onAuthStateChanged(auth, (user) => {
@@ -33,6 +34,8 @@ const Context = ({ children }) => {
     profileLoading,
     currentNotes,
     setCurrentNotes,
+    pinPost,
+    setPinPost,
   };
 
   return (
