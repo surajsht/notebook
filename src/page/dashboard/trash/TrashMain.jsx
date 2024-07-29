@@ -3,7 +3,7 @@ import TrashNote from "./TrashNote";
 
 const TrashMain = () => {
   return (
-    <main className="main">
+    <main className="main trash-note-main">
       <Topbar />
       <TrashNote />
     </main>

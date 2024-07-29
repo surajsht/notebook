@@ -8,8 +8,7 @@ const TrashNote = () => {
   const [trashNoteLoading, setTrashNoteLoading] = useState(true);
   const [trashNotes, setTrashNotes] = useState([]);
 
-  const { gridLayout, currentUser, currentNotes, setCurrentNotes, pinPost } =
-    InvokeContext();
+  const { gridLayout, currentUser } = InvokeContext();
 
   const userRef = doc(db, "users", `${currentUser.email}`);
 
