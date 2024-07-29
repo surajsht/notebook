@@ -49,6 +49,7 @@
   text-decoration: none;
 }
 
+.sidebar-top-option a.active,
 .sidebar-top-option a:hover {
   color: var(--primary-hover-color);
 }

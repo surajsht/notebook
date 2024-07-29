@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { GoTrash } from "react-icons/go";
 import { IoArchiveOutline } from "react-icons/io5";
 import { SlNote } from "react-icons/sl";
@@ -34,22 +34,22 @@ const Sidebar = () => {
 
         <div className="sidebar-option-container">
           <div className="sidebar-top-option">
-            <Link to="">
+            <NavLink to="/">
               <SlNote />
               <span className="sidebar-action-label">All Notes</span>
-            </Link>
+            </NavLink>
           </div>
           <div className="sidebar-top-option">
-            <Link to="">
+            <NavLink to="/archive">
               <IoArchiveOutline />
               <span className="sidebar-action-label">Archive</span>
-            </Link>
+            </NavLink>
           </div>
           <div className="sidebar-top-option">
-            <Link to="">
+            <NavLink to="/trash">
               <GoTrash />
               <span className="sidebar-action-label">Trash</span>
-            </Link>
+            </NavLink>
           </div>
         </div>
 
