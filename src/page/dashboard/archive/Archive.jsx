@@ -1,18 +1,18 @@
 import NotePopup from "../../../component/notePopup/NotePopup";
 import Sidebar from "../../../component/sidebar/Sidebar";
 import { InvokeContext } from "../../../context/Context";
-import TrashMain from "./TrashMain";
+import ArchiveMain from "./ArchiveMain";
 
-const Trash = () => {
+const Archive = () => {
   const { sidebarActive } = InvokeContext();
 
   return (
     <div className={`profile-container ${sidebarActive ? "active" : ""}`}>
       <Sidebar />
       <NotePopup />
-      <TrashMain />
+      <ArchiveMain />
     </div>
   );
 };
 
-export default Trash;
+export default Archive;

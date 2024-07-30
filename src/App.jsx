@@ -4,6 +4,7 @@ import Signup from "./page/auth/Signup";
 import Profile from "./page/dashboard/profile/Profile";
 import ProtectedRoute from "./component/protectedRoute/ProtectedRoute";
 import Trash from "./page/dashboard/trash/Trash";
+import Archive from "./page/dashboard/archive/Archive";
 
 const App = () => {
   return (
@@ -22,6 +23,14 @@ const App = () => {
           element={
             <ProtectedRoute>
               <Trash />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/archive"
+          element={
+            <ProtectedRoute>
+              <Archive />
             </ProtectedRoute>
           }
         />
