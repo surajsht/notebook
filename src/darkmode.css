@@ -1,0 +1,15 @@
+:root {
+  --darkmode-bg-color: #1e1e1e;
+  --darkmode-bg-dark-color: #fff;
+  --darkmode-svg-color: #fff;
+}
+
+.darkmode {
+  --bg-color: var(--darkmode-bg-color);
+  --bg-light-color: var(--darkmode-bg-dark-color);
+  --svg-color: var(--darkmode-svg-color);
+}
+
+.darkmode .sidebar {
+  color: #fff;
+}

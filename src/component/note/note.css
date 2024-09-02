@@ -42,12 +42,12 @@
 .note-item {
   position: relative;
   padding: 3.2rem;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
   border-radius: 1.2rem;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-between;
+  background-color: var(--bg-light-color);
   cursor: pointer;
   -webkit-user-select: none;
   -ms-user-select: none;
@@ -62,7 +62,7 @@
 }
 
 .note-item:hover {
-  background-color: #f4f4f4;
+  background-color: #fffdf6;
 }
 
 .note-item > svg {

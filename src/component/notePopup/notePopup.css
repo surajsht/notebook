@@ -22,7 +22,7 @@
 .note-popup-form {
   position: relative;
   padding: 3.2rem;
-  background-color: #fff;
+  background-color: var(--bg-light-color);
   border-radius: 0.8rem;
   max-height: calc(100% - 4rem);
   overflow-y: auto;

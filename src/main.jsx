@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import Context from "./context/Context.jsx";
 import "./index.css";
+import "./darkmode.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>

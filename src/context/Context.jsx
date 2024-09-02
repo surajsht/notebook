@@ -8,6 +8,7 @@ const InitializeContext = createContext();
 const Context = ({ children }) => {
   const [notePopupState, setNotePopupState] = useState(false);
   const [gridLayout, setGridLayout] = useState(true);
+  const [darkMode, setDarkMode] = useState(false);
   const [sidebarActive, setSidebarActive] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
   const [profileLoading, setProfileLoading] = useState(true);
@@ -36,6 +37,8 @@ const Context = ({ children }) => {
     setCurrentNotes,
     pinPost,
     setPinPost,
+    darkMode,
+    setDarkMode,
   };
 
   return (
